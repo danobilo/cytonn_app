@@ -31,7 +31,7 @@ class TasksController extends Controller {
         $data = [];
 
 
-        $data['tasks'] = $this->task->where('private', '=', 0)->orWhere([['private', '=', 1], ['assigned_to', '=', Auth::user()->id]])->get();
+        $data['tasks'] = $this->task->where('private', '=', 0)->orWhere([['private', '=', 1], ['assigned_to', '=', Auth::user()->id]])->orWhere([['private', '=', 1], ['created_by', '=', Auth::user()->id]])->get();
         $data['departments'] = $this->department->all();
 
         return view('task/index', $data);
