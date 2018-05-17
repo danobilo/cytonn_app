@@ -22,12 +22,10 @@ Route::middleware('auth')->group(function() {
     Route::get('/tasks/documents/upload/{task_id}', 'TasksController@upload')->name('upload');
     Route::post('/tasks/documents/upload/{task_id}', 'TasksController@upload')->name('upload');
     Route::get('/tasks/documents/download/{filename}', 'DocumentsController@download')->name('download');
-//Route::post('/tasks/details/{task_id}', 'TasksController@addComment')->name('add_comment');
 
     Route::get('/categories/new', 'CategoryController@newCategory')->name('new_category');
     Route::post('/categories/new', 'CategoryController@newCategory')->name('create_category');
 
-//Route::post('/task/tag/{task_id}/{user_id}', 'TagsController@addTag')->name('add_tag');
     Route::get('/task/document/{task_id}/{user_id}/{name}', 'DocumentsController@addDocument')->name('add_document');
     Route::post('/task/comment/{task_id}/{user_id}', 'CommentsController@addComment')->name('add_comment');
 
@@ -43,7 +41,6 @@ Route::middleware('auth')->group(function() {
     
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/generate/password', function() {
     return bcrypt(123456789);
