@@ -239,7 +239,7 @@ class TasksController extends Controller {
 
         $data['task'] = $this->task->find($task_id);
         $data['user'] = Auth::user();
-        $data['tags'] = Tag::where('task_id', $task_id)->get();
+//        $data['tags'] = Tag::where('task_id', $task_id)->get();
         $data['comments'] = Comment::where('task_id', $task_id)->get();
         $data['documents'] = Document::where('task_id', $task_id)->get();
 
@@ -247,8 +247,17 @@ class TasksController extends Controller {
                 ->join('users', 'users.department_id', '=', 'departments.id')
                 ->join('tags', 'tags.user_id', '=', 'users.id')
                 ->where('task_id', $task_id)
+                ->groupBy('id')
                 ->select('departments.*')
                 ->get();
+        
+        $data['tags'] = DB::table('users')
+                ->join('tags', 'tags.user_id', '=', 'users.id')
+                ->where('task_id', $task_id)
+                ->groupBy('id')
+                ->select('users.*')
+                ->get();
+        
         
 
 

@@ -62,7 +62,7 @@
                 <h5 class="font-600">Users</h5>
                 <ul class="list-inline">
                     @foreach ($tags as $tag)
-                    <li>{{ $tag->user->name }}</li>
+                    <li>{{ $tag->name }}</li>
                     @endforeach
                 </ul>
             </div>
@@ -119,7 +119,7 @@
 
                 <div class="media m-b-20">
                     <div class="d-flex mr-3">
-                        <a href="#"> <img class="media-object rounded-circle thumb-sm" alt="64x64" src="assets/images/users/avatar-1.jpg"> </a>
+                        <a href="#"> <img class="media-object rounded-circle thumb-sm" alt="64x64" src="{{ asset('assets/images/users/avatar-1.jpg') }}"> </a>
                     </div>
                     <form action="{{ route('add_comment', [ 'task_id' => $task->id, 'user_id' => 1 ])  }}" method="post">
                         {{ csrf_field() }}
