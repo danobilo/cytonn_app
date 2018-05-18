@@ -383,7 +383,7 @@ class TasksController extends Controller {
         $data['selected_user'] = 0;
         $data['employees'] = $this->user->all();
         $data['upcoming'] = $this->task->where('progress', 0)->get();
-        $data['ongoing'] = Task::where(['progress', '>', 0],['progress', '<', 100])->get();
+        $data['ongoing'] = Task::where([['progress', '>', 0],['progress', '<', 100]])->get();
         $data['completed'] = Task::where('progress', 100)->get();
 
         return view('task/taskboard', $data);
