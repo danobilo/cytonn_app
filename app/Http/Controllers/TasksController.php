@@ -324,18 +324,18 @@ class TasksController extends Controller {
     public function upload(Request $request, $task_id, Document $document) {
         $data = [];
         if ($request->isMethod('post')) {
-//            $this->validate(
-//                    $request, [
-//                'image_upload' => 'mimes:jpeg,bmp,png'
-//                    ]
-//            );
+            $this->validate(
+                    $request, [
+                'image_upload' => 'mimes:jpeg,bmp,png,doc,pdf,dot'
+                    ]
+            );
             Input::file('image_upload')->move('documents');
 
-            $document->task_id = $task_id;
-            $document->name = $_FILES['image_upload']['name'];
-            $document->save();
+//            $document->task_id = $task_id;
+//            $document->name = $_FILES['image_upload']['name'];
+//            $document->save();
 
-            return redirect('/');
+            return redirect('/tasks');
         }
         return view('task/upload', $data);
     }
@@ -360,7 +360,7 @@ class TasksController extends Controller {
 
             $data['employees'] = $this->user->all();
             $data['upcoming'] = Task::where([['progress', '=', 0], ['assigned_to', '=', $user_id]])->get();
-            $data['ongoing'] = Task::where([['progress', '>', 0], ['assigned_to', '=', $user_id]])->get();
+            $data['ongoing'] = Task::where([['progress', '>', 0], ['progress', '<', 0], ['assigned_to', '=', $user_id]])->get();
             $data['completed'] = Task::where([['progress', '=', 100], ['assigned_to', '=', $user_id]])->get();
         } else {
             $data['employees'] = $this->user->all();
