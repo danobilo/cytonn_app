@@ -31,7 +31,10 @@ class TasksController extends Controller {
         $data = [];
 
 
-        $data['tasks'] = $this->task->where('private', '=', 0)->orWhere([['private', '=', 1], ['assigned_to', '=', Auth::user()->id]])->orWhere([['private', '=', 1], ['created_by', '=', Auth::user()->id]])->get();
+        $data['tasks'] = $this->task->where('private', '=', 0)
+                ->orWhere([['private', '=', 1], ['assigned_to', '=', Auth::user()->id]])
+                ->orWhere([['private', '=', 1], ['created_by', '=', Auth::user()->id]])
+                ->get();
         $data['departments'] = $this->department->all();
 
         return view('task/index', $data);
@@ -380,7 +383,7 @@ class TasksController extends Controller {
         $data['selected_user'] = 0;
         $data['employees'] = $this->user->all();
         $data['upcoming'] = $this->task->where('progress', 0)->get();
-        $data['ongoing'] = Task::where('progress', '>', 0)->get();
+        $data['ongoing'] = Task::where(['progress', '>', 0],['progress', '<', 100])->get();
         $data['completed'] = Task::where('progress', 100)->get();
 
         return view('task/taskboard', $data);
