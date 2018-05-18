@@ -249,6 +249,8 @@ class TasksController extends Controller {
                 ->where('task_id', $task_id)
                 ->select('departments.*')
                 ->get();
+        
+
 
         if ($data['task']->priority === 'Urgent') {
             $data['badge'] = 'danger';
@@ -324,18 +326,42 @@ class TasksController extends Controller {
     public function upload(Request $request, $task_id, Document $document) {
         $data = [];
         if ($request->isMethod('post')) {
-            $this->validate(
-                    $request, [
-                'image_upload' => 'mimes:jpeg,bmp,png,doc,pdf,dot'
-                    ]
-            );
+
             Input::file('image_upload')->move('documents');
 
-//            $document->task_id = $task_id;
-//            $document->name = $_FILES['image_upload']['name'];
-//            $document->save();
+            $document->task_id = $task_id;
+            $document->name = $_FILES['image_upload']['name'];
+            $document->save();
+            
+            $data = [];
 
-            return redirect('/tasks');
+        $data['task'] = $this->task->find($task_id);
+        $data['user'] = Auth::user();
+        $data['tags'] = Tag::where('task_id', $task_id)->get();
+        $data['comments'] = Comment::where('task_id', $task_id)->get();
+        $data['documents'] = Document::where('task_id', $task_id)->get();
+
+        $data['departments'] = DB::table('departments')
+                ->join('users', 'users.department_id', '=', 'departments.id')
+                ->join('tags', 'tags.user_id', '=', 'users.id')
+                ->where('task_id', $task_id)
+                ->select('departments.*')
+                ->get();
+
+        if ($data['task']->priority === 'Urgent') {
+            $data['badge'] = 'danger';
+        }
+        if ($data['task']->priority === 'High') {
+            $data['badge'] = 'warning';
+        }
+        if ($data['task']->priority === 'Medium') {
+            $data['badge'] = 'primary';
+        }
+        if ($data['task']->priority === 'Low') {
+            $data['badge'] = 'info';
+        }
+
+            return view('task/details', $data);
         }
         return view('task/upload', $data);
     }
@@ -360,7 +386,7 @@ class TasksController extends Controller {
 
             $data['employees'] = $this->user->all();
             $data['upcoming'] = Task::where([['progress', '=', 0], ['assigned_to', '=', $user_id]])->get();
-            $data['ongoing'] = Task::where([['progress', '>', 0], ['progress', '<', 0], ['assigned_to', '=', $user_id]])->get();
+            $data['ongoing'] = Task::where([['progress', '>', 0], ['assigned_to', '=', $user_id]])->get();
             $data['completed'] = Task::where([['progress', '=', 100], ['assigned_to', '=', $user_id]])->get();
         } else {
             $data['employees'] = $this->user->all();
