@@ -34,9 +34,8 @@ Route::middleware('auth')->group(function() {
     Route::get('/taskboard', 'TasksController@showBoard')->name('show_board');
     Route::post('/taskboard', 'TasksController@showUserBoard')->name('show_user_board');
     
-    Route::get('mail/send', 'MailController@send')->name('send_mail');
+    Route::get('/mail/send', 'MailController@send')->name('send_mail');
 });
-
 
     
 Auth::routes();

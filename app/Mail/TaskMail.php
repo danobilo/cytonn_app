@@ -17,15 +17,17 @@ class TaskMail extends Mailable
      * @var Demo
      */
     public $task;
+    public $user;
  
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($task)
+    public function __construct($task,$user)
     {
         $this->task = $task;
+        $this->user = $user;
     }
  
     /**
@@ -35,17 +37,11 @@ class TaskMail extends Mailable
      */
     public function build()
     {
-        return $this->from('sender@example.com')
+        $data['task'] = $this->task;
+        $data['user'] = $this->user;
+        return $this->from($this->task->creator->email)
                     ->view('mails.task')
                     ->text('mails.task_plain')
-                    ->with(
-                      [
-                            'testVarOne' => '1',
-                            'testVarTwo' => '2',
-                      ]);
-//                      ->attach(public_path('/images').'/demo.jpg', [
-//                              'as' => 'demo.jpg',
-//                              'mime' => 'image/jpeg',
-//                      ]);
+                    ->with($data);
     }
 }

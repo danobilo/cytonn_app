@@ -1,15 +1,11 @@
-Hello {{ $task->receiver }},
+Hello {{ $user->name }},
 This is a task email for testing purposes! Also, it's the HTML version.
  
 Demo object values:
  
-Demo One: {{ $task->task_one }}
-Demo Two: {{ $task->task_two }}
+Demo One: {{ $task->title }}
+Demo Two: {{ $task->due_date }}
  
-Values passed by With method:
- 
-testVarOne: {{ $testVarOne }}
-testVarOne: {{ $testVarOne }}
  
 Thank You,
-{{ $task->sender }}
+{{ $task->creator->name }}

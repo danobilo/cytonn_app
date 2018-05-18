@@ -15,6 +15,7 @@ use App\Document as Document;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use App\Mail\TaskMail as TaskMail;
+use Illuminate\Support\Facades\Mail;
 
 class TasksController extends Controller {
 
@@ -143,8 +144,10 @@ class TasksController extends Controller {
                 $tag = new TagsController();
                 $tag->addTag($lastInsertedId, $value);
 
-//                $mail = new TaskMail;
-//                $mail->send();
+                $task_data = $this->task->find($lastInsertedId);
+                $user_data = $this->user->find($value);
+
+                Mail::to($user_data->email)->send(new TaskMail($task_data, $user_data));
             }
 
             return redirect('tasks');
@@ -253,15 +256,15 @@ class TasksController extends Controller {
                 ->groupBy('id')
                 ->select('departments.*')
                 ->get();
-        
+
         $data['tags'] = DB::table('users')
                 ->join('tags', 'tags.user_id', '=', 'users.id')
                 ->where('task_id', $task_id)
                 ->groupBy('id')
                 ->select('users.*')
                 ->get();
-        
-        
+
+
 
 
         if ($data['task']->priority === 'Urgent') {
@@ -344,34 +347,34 @@ class TasksController extends Controller {
             $document->task_id = $task_id;
             $document->name = $_FILES['image_upload']['name'];
             $document->save();
-            
+
             $data = [];
 
-        $data['task'] = $this->task->find($task_id);
-        $data['user'] = Auth::user();
-        $data['tags'] = Tag::where('task_id', $task_id)->get();
-        $data['comments'] = Comment::where('task_id', $task_id)->get();
-        $data['documents'] = Document::where('task_id', $task_id)->get();
+            $data['task'] = $this->task->find($task_id);
+            $data['user'] = Auth::user();
+            $data['tags'] = Tag::where('task_id', $task_id)->get();
+            $data['comments'] = Comment::where('task_id', $task_id)->get();
+            $data['documents'] = Document::where('task_id', $task_id)->get();
 
-        $data['departments'] = DB::table('departments')
-                ->join('users', 'users.department_id', '=', 'departments.id')
-                ->join('tags', 'tags.user_id', '=', 'users.id')
-                ->where('task_id', $task_id)
-                ->select('departments.*')
-                ->get();
+            $data['departments'] = DB::table('departments')
+                    ->join('users', 'users.department_id', '=', 'departments.id')
+                    ->join('tags', 'tags.user_id', '=', 'users.id')
+                    ->where('task_id', $task_id)
+                    ->select('departments.*')
+                    ->get();
 
-        if ($data['task']->priority === 'Urgent') {
-            $data['badge'] = 'danger';
-        }
-        if ($data['task']->priority === 'High') {
-            $data['badge'] = 'warning';
-        }
-        if ($data['task']->priority === 'Medium') {
-            $data['badge'] = 'primary';
-        }
-        if ($data['task']->priority === 'Low') {
-            $data['badge'] = 'info';
-        }
+            if ($data['task']->priority === 'Urgent') {
+                $data['badge'] = 'danger';
+            }
+            if ($data['task']->priority === 'High') {
+                $data['badge'] = 'warning';
+            }
+            if ($data['task']->priority === 'Medium') {
+                $data['badge'] = 'primary';
+            }
+            if ($data['task']->priority === 'Low') {
+                $data['badge'] = 'info';
+            }
 
             return view('task/details', $data);
         }
@@ -383,7 +386,7 @@ class TasksController extends Controller {
         $data['selected_user'] = 0;
         $data['employees'] = $this->user->all();
         $data['upcoming'] = $this->task->where('progress', 0)->get();
-        $data['ongoing'] = Task::where([['progress', '>', 0],['progress', '<', 100]])->get();
+        $data['ongoing'] = Task::where([['progress', '>', 0], ['progress', '<', 100]])->get();
         $data['completed'] = Task::where('progress', 100)->get();
 
         return view('task/taskboard', $data);
