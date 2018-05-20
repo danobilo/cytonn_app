@@ -16,7 +16,7 @@ class CreateDocumentsTable extends Migration
         Schema::create('documents', function (Blueprint $table) {
              $table->increments('id');
             $table->integer('task_id')->unsigned();
-            $table->foreign('task_id')->references('id')->on('tasks');
+//            $table->foreign('task_id')->references('id')->on('tasks');
             $table->text('name');
             $table->timestamps();
         });

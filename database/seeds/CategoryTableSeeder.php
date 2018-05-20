@@ -19,7 +19,7 @@ class CategoryTableSeeder extends Seeder
             ]
         );
 
-        DB::table('rooms')->insert(
+        DB::table('categories')->insert(
             [
                 'name' => 'Hiring',
                 'department_id' => 1,

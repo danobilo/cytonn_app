@@ -20,7 +20,7 @@ class CreateTasksTable extends Migration
             $table->integer('created_by');
             $table->integer('assigned_to');
             $table->integer('category_id')->unsigned();
-            $table->foreign('category_id')->references('id')->on('categories');
+//            $table->foreign('category_id')->references('id')->on('categories');
             $table->date('start_date');
             $table->date('due_date');
             $table->string('priority');

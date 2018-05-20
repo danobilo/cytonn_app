@@ -3,35 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/resources/views/task/taskboard.blade.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/resources/views/task/form.blade.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/resources/views/head.blade.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/resources/views/auth/passwords/email.blade.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/resources/views/auth/register.blade.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/resources/views/auth/login.blade.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/app/Category.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/resources/views/layouts/app.blade.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/routes/web.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/resources/views/auth/passwords/reset.blade.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/app/Http/Controllers/HomeController.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/app/Task.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/app/Http/Controllers/TasksController.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/app/Http/Controllers/CategoryController.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/app/Tag.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/app/Http/Controllers/Auth/LoginController.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/app/Department.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/resources/views/category/createCategory.blade.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/database/migrations/2018_05_16_062201_create_documents_table.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/resources/views/task/details.blade.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/database/migrations/2018_05_16_061926_create_tags_table.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/database/migrations/2018_05_16_062113_create_comments_table.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/database/migrations/2018_05_15_120958_create_tasks_table.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/app/Http/Middleware/VerifyCsrfToken.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/app/Access.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/resources/views/sidebar.blade.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/resources/views/task/index.blade.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/app/Document.php</file>
-            <file>file:/C:/cygwin64/home/Daniel/cytonn_app/database/migrations/2014_10_12_000000_create_users_table.php</file>
+            <file>file:/C:/cygwin64/home/Daniel/production/database/migrations/2018_05_15_130448_create_departments_table.php</file>
+            <file>file:/C:/cygwin64/home/Daniel/production/database/seeds/TagTableSeeder.php</file>
+            <file>file:/C:/cygwin64/home/Daniel/production/database/migrations/2018_05_15_120731_create_categories_table.php</file>
+            <file>file:/C:/cygwin64/home/Daniel/production/config/mail.php</file>
+            <file>file:/C:/cygwin64/home/Daniel/production/database/seeds/DatabaseSeeder.php</file>
+            <file>file:/C:/cygwin64/home/Daniel/production/database/migrations/2014_10_12_000000_create_users_table.php</file>
+            <file>file:/C:/cygwin64/home/Daniel/production/database/seeds/CommentTableSeeder.php</file>
+            <file>file:/C:/cygwin64/home/Daniel/production/.gitignore</file>
+            <file>file:/C:/cygwin64/home/Daniel/production/database/seeds/CategoryTableSeeder.php</file>
+            <file>file:/C:/cygwin64/home/Daniel/production/.gitattributes</file>
+            <file>file:/C:/cygwin64/home/Daniel/production/database/migrations/2018_05_16_061926_create_tags_table.php</file>
+            <file>file:/C:/cygwin64/home/Daniel/production/database/migrations/2018_05_16_062113_create_comments_table.php</file>
+            <file>file:/C:/cygwin64/home/Daniel/production/database/seeds/DepartmentTableSeeder.php</file>
+            <file>file:/C:/cygwin64/home/Daniel/production/database/seeds/DocumentTableSeeder.php</file>
+            <file>file:/C:/cygwin64/home/Daniel/production/database/seeds/TaskTableSeeder.php</file>
+            <file>file:/C:/cygwin64/home/Daniel/production/database/migrations/2018_05_15_120958_create_tasks_table.php</file>
+            <file>file:/C:/cygwin64/home/Daniel/production/database/migrations/2014_10_12_100000_create_password_resets_table.php</file>
+            <file>file:/C:/cygwin64/home/Daniel/production/database/seeds/UserTableSeeder.php</file>
+            <file>file:/C:/cygwin64/home/Daniel/production/database/migrations/2018_05_16_062201_create_documents_table.php</file>
+            <file>file:/C:/cygwin64/home/Daniel/production/routes/web.php</file>
         </group>
     </open-files>
 </project-private>
